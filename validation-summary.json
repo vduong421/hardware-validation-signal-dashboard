@@ -1,0 +1,23 @@
+{
+  "total_results": 13,
+  "passed": 8,
+  "failed": 5,
+  "pass_rate": 0.615,
+  "requirement_coverage": 1.0,
+  "flaky_tests": [
+    "pcie_link_001",
+    "thermal_007"
+  ],
+  "failures_by_subsystem": {
+    "DDR": 2,
+    "PCIe": 1,
+    "FPGA": 1,
+    "System": 1
+  },
+  "failures_by_error": {
+    "training_error": 2,
+    "timeout": 1,
+    "timing_slack": 1,
+    "limit_exceeded": 1
+  }
+}

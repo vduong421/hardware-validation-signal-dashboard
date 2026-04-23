@@ -1,0 +1,14 @@
+test_id,subsystem,requirement,status,error_type,duration_ms,run_id
+pcie_link_001,PCIe,REQ-PCIE-LINK,PASS,,240,run-001
+pcie_link_001,PCIe,REQ-PCIE-LINK,FAIL,timeout,248,run-002
+pcie_link_001,PCIe,REQ-PCIE-LINK,PASS,,241,run-003
+cxl_mem_002,CXL,REQ-CXL-MEM,PASS,,510,run-001
+cxl_mem_002,CXL,REQ-CXL-MEM,PASS,,508,run-002
+ddr_train_003,DDR,REQ-DDR-TRAIN,FAIL,training_error,900,run-001
+ddr_train_003,DDR,REQ-DDR-TRAIN,FAIL,training_error,920,run-002
+fpga_cdc_004,FPGA,REQ-FPGA-CDC,PASS,,180,run-001
+fpga_timing_005,FPGA,REQ-FPGA-TIMING,FAIL,timing_slack,650,run-001
+fw_boot_006,Firmware,REQ-FW-BOOT,PASS,,430,run-001
+fw_boot_006,Firmware,REQ-FW-BOOT,PASS,,428,run-002
+thermal_007,System,REQ-THERMAL,PASS,,1200,run-001
+thermal_007,System,REQ-THERMAL,FAIL,limit_exceeded,1240,run-002
