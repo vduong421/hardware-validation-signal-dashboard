@@ -2,6 +2,10 @@
 
 Hardware Validation Signal Dashboard is a local validation analytics tool that parses hardware/software regression results, measures pass rate and coverage, detects flaky tests, clusters failures, and adds AI-assisted triage guidance.
 
+## Product Screenshot
+
+![Product screenshot](assets/product-screenshot.png)
+
 It is designed for validation workflows where deterministic test evidence must remain auditable, while AI helps engineers explain the failure pattern and decide where to investigate first.
 
 ## What It Does
