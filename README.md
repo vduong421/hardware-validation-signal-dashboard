@@ -1,75 +1,59 @@
 # Hardware Validation Signal Dashboard
 
-Python project for turning hardware and software validation logs into operations-ready engineering signals: pass rate, flaky tests, requirement coverage, failure clusters, and release-readiness notes.
+Hardware Validation Signal Dashboard is a local validation analytics tool that parses hardware/software regression results, measures pass rate and coverage, detects flaky tests, clusters failures, and adds AI-assisted triage guidance.
 
-## Why This Project Exists
+It is designed for validation workflows where deterministic test evidence must remain auditable, while AI helps engineers explain the failure pattern and decide where to investigate first.
 
-This project supports entry-level validation, test engineering, hardware application engineering, ASIC/FPGA verification, and systems software roles. It shows the same pattern many Bay Area postings ask for: parse engineering data, detect failures, summarize risk, and create a clear report for cross-functional teams.
+## What It Does
 
-## What It Demonstrates
+- Parses validation and regression test logs.
+- Computes pass rate, failure rate, coverage, and subsystem distribution.
+- Detects flaky tests and repeated failure signatures.
+- Produces JSON and Markdown summaries.
+- Serves a browser dashboard for validation review.
+- Adds local AI triage recommendations.
 
-- Python log parsing and structured CSV/JSON processing
-- Pass/fail rate, flaky-test detection, and requirement coverage tracking
-- Failure clustering by subsystem, error type, and test owner
-- HTML/Markdown reporting for engineering review
-- Hardware/software validation vocabulary: PCIe, CXL, FPGA, ASIC, firmware, system test, regression, coverage, triage
+## AI Features
+
+- Local AI analyst explains the most important validation risks.
+- AI-generated triage notes identify likely subsystem ownership.
+- Recommendations are grounded in pass/fail, coverage, flaky-test, and failure-cluster metrics.
+- The browser UI places deterministic evidence next to AI interpretation.
+
+## Architecture
+
+```text
+Validation logs
+      |
+      v
+Parser -> metrics -> flaky-test detection -> subsystem clustering
+      |
+      v
+Local AI analyst -> triage summary + next debug action
+      |
+      v
+Dashboard + JSON/Markdown reports
+```
 
 ## Run
 
-```bash
-python analyzer.py sample_validation_results.csv
-```
-
-With local AI hardware-validation brief:
-
-```bash
-python analyzer.py sample_validation_results.csv --use-ai
-```
-
-The script prints a console summary and writes:
-
-- `validation-summary.json`
-- `validation-summary.md`
-- `validation-ai-brief.json`
-- `validation-ai-brief.md`
-
-## Product Dashboard
-
-The web dashboard includes:
-
-- Local AI Analyst panel near the top
-- Context-aware AI Chat with 4 sample technical question buttons
-- visible Local AI running / finished status
-- validation metrics cards
-- requirement coverage progress bar
-- failure breakdown charts by subsystem, error type, owner, and pass/fail
-- run trend table grouped by validation run
-- risky validation records table
-- release-readiness decision output
-
-AI responses are grounded in deterministic validation output and include:
-
-- answer
-- evidence
-- next_action
-- recommendation
-- decision
-
-## Resume Angle
-
-Built a Python validation dashboard that parses hardware/software regression results, measures pass rate and coverage, detects flaky tests, clusters failures by subsystem, generates JSON/Markdown summaries, and exposes a local-AI triage dashboard for engineering release decisions.
-
-## Project Workbench
-
-Launch the production-style desktop workbench with:
-
 ```powershell
-launch-workbench.bat
+run.bat
 ```
 
-What it adds:
+## Local AI Setup
 
-- Local-first AI copilot using `google/gemma-4-e4b` by default
-- Operator-focused workbench for reviewing real project inputs and outputs
-- System design, production-impact, and operational brief generation on demand
-- Grounded responses based on this project's README, sample files, and deterministic outputs
+Run LM Studio or another local OpenAI-compatible server with a small model such as `google/gemma-4-e4b`.
+
+If AI is unavailable, all deterministic validation metrics still generate.
+
+## Main Files
+
+- `analyzer.py` - log parsing, metrics, and AI copilot generation.
+- `server.py` - local dashboard API.
+- `validation-ui-data.json` - dashboard data.
+- `agents/Agent.md` - validation AI role instructions.
+
+## Output
+
+The dashboard shows release health, pass/fail metrics, subsystem risk, flaky-test detection, and AI-generated triage guidance.
