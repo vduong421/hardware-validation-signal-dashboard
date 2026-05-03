@@ -1,23 +1,165 @@
 {
-  "total_results": 13,
-  "passed": 8,
-  "failed": 5,
-  "pass_rate": 0.615,
+  "total_results": 106,
+  "passed": 80,
+  "failed": 26,
+  "pass_rate": 0.755,
   "requirement_coverage": 1.0,
   "flaky_tests": [
+    "system_018",
+    "nvme_007",
+    "pcie_014",
+    "thermal_007",
     "pcie_link_001",
-    "thermal_007"
+    "ddr_training_004"
   ],
   "failures_by_subsystem": {
-    "DDR": 2,
-    "PCIe": 1,
-    "FPGA": 1,
-    "System": 1
+    "DDR": 5,
+    "Firmware": 4,
+    "PCIe": 4,
+    "System": 3,
+    "Thermal": 2,
+    "CXL": 2,
+    "NVMe": 2,
+    "FPGA": 2,
+    "PCIE": 1,
+    "THERMAL": 1
   },
   "failures_by_error": {
-    "training_error": 2,
-    "timeout": 1,
-    "timing_slack": 1,
-    "limit_exceeded": 1
-  }
+    "timing_slack": 5,
+    "training_error": 5,
+    "crc_error": 4,
+    "limit_exceeded": 4,
+    "timeout": 4,
+    "firmware_assert": 3,
+    "link_down": 1
+  },
+  "failures_by_owner": {
+    "Firmware": 7,
+    "Hardware": 7,
+    "Validation": 6,
+    "SignalIntegrity": 4,
+    "Systems": 2
+  },
+  "results_by_run": {
+    "RUN-01": {
+      "PASS": 11,
+      "FAIL": 4
+    },
+    "RUN-02": {
+      "PASS": 16,
+      "FAIL": 1
+    },
+    "RUN-03": {
+      "PASS": 8,
+      "FAIL": 3
+    },
+    "RUN-04": {
+      "PASS": 17,
+      "FAIL": 7
+    },
+    "RUN-05": {
+      "PASS": 15,
+      "FAIL": 5
+    },
+    "RUN-06": {
+      "PASS": 10,
+      "FAIL": 3
+    },
+    "RUN-FLAKY-A": {
+      "PASS": 3,
+      "FAIL": 0
+    },
+    "RUN-FLAKY-B": {
+      "PASS": 0,
+      "FAIL": 3
+    }
+  },
+  "top_risky_tests": [
+    {
+      "test_id": "ddr_008",
+      "requirement": "REQ-008",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "timing_slack",
+      "owner": "Firmware",
+      "duration_ms": "879",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "ddr_022",
+      "requirement": "REQ-014",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "training_error",
+      "owner": "SignalIntegrity",
+      "duration_ms": "560",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "ddr_017",
+      "requirement": "REQ-009",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "training_error",
+      "owner": "Firmware",
+      "duration_ms": "2899",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "ddr_training_004",
+      "requirement": "REQ-025",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "training_error",
+      "owner": "Validation",
+      "duration_ms": "2004",
+      "run_id": "RUN-FLAKY-B"
+    },
+    {
+      "test_id": "ddr_001",
+      "requirement": "REQ-003",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "crc_error",
+      "owner": "Firmware",
+      "duration_ms": "1402",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "firmware_007",
+      "requirement": "REQ-022",
+      "subsystem": "Firmware",
+      "status": "FAIL",
+      "error_type": "timing_slack",
+      "owner": "Hardware",
+      "duration_ms": "624",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "pcie_014",
+      "requirement": "REQ-026",
+      "subsystem": "PCIe",
+      "status": "FAIL",
+      "error_type": "timing_slack",
+      "owner": "Firmware",
+      "duration_ms": "2225",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "pcie_003",
+      "requirement": "REQ-003",
+      "subsystem": "PCIe",
+      "status": "FAIL",
+      "error_type": "crc_error",
+      "owner": "Systems",
+      "duration_ms": "606",
+      "run_id": "RUN-05"
+    }
+  ],
+  "release_status": "hold",
+  "operator_priority": [
+    "Debug highest-frequency subsystem failures first",
+    "Quarantine flaky tests before release signoff",
+    "Review failing requirements with test owners"
+  ]
 }

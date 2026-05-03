@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Hardware Validation AI Dashboard</title>
+<style>
+body { margin:0; font-family:Arial; background:#0f172a; color:#f8fafc; }
+.container { max-width:1280px; margin:auto; padding:24px; }
+h1 { font-size:34px; margin:12px 0 24px; }
+.card { background:#1e293b; border-radius:14px; padding:20px; margin-bottom:20px; box-shadow:0 8px 22px rgba(0,0,0,.18); }
+.title { color:#60a5fa; font-size:22px; margin-bottom:14px; }
+.grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.metric { background:#111827; border-radius:12px; padding:18px; text-align:center; }
+.metric .label { color:#cbd5e1; }
+.metric .value { font-size:32px; font-weight:700; margin-top:8px; }
+.good { color:#22c55e; }
+.bad { color:#ef4444; }
+.warn { color:#f59e0b; }
+.row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+input { width:65%; padding:12px; border-radius:8px; border:none; font-size:16px; }
+button { background:#3b82f6; color:white; border:none; padding:11px 14px; border-radius:8px; cursor:pointer; font-size:15px; }
+button.secondary { background:#334155; color:#93c5fd; }
+.status { margin-top:12px; color:#f59e0b; font-weight:700; }
+.answer { margin-top:16px; line-height:1.55; }
+.chart-row { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.bar { display:flex; align-items:center; margin:8px 0; gap:10px; }
+.bar-label { width:150px; color:#cbd5e1; }
+.bar-track { flex:1; background:#0f172a; border-radius:999px; overflow:hidden; height:16px; }
+.bar-fill { height:16px; background:#3b82f6; }
+.bar-value { width:40px; text-align:right; }
+table { width:100%; border-collapse:collapse; }
+th, td { padding:10px; border-bottom:1px solid #334155; text-align:left; }
+th { color:#60a5fa; }
+tr:hover { background:#334155; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Hardware Validation AI Dashboard</h1>
+
+<div class="card">
+    <div class="title">AI Analyst</div>
+    <div id="analyst"></div>
+</div>
+
+<div class="card">
+    <div class="title">Ask Local AI</div>
+    <div class="row">
+        <input id="question" placeholder="Ask about release readiness, flaky tests, subsystem risk...">
+        <button onclick="askAI()">Ask</button>
+    </div>
+    <div class="row" style="margin-top:14px">
+        <button class="secondary" onclick="fillQ('What are the top subsystem risks?')">Top Risks</button>
+        <button class="secondary" onclick="fillQ('Which tests are flaky and why do they matter?')">Flaky Tests</button>
+        <button class="secondary" onclick="fillQ('What are the likely root causes by error type?')">Root Cause</button>
+        <button class="secondary" onclick="fillQ('Is this validation run ready for release?')">Release Decision</button>
+    </div>
+    <div id="chatStatus" class="status"></div>
+    <div id="chatAnswer" class="answer"></div>
+</div>
+
+<div class="card">
+    <div class="title">Validation Metrics</div>
+    <div class="grid">
+        <div class="metric"><div class="label">Total Results</div><div id="total" class="value"></div></div>
+        <div class="metric"><div class="label">Passed</div><div id="passed" class="value good"></div></div>
+        <div class="metric"><div class="label">Failed</div><div id="failed" class="value bad"></div></div>
+        <div class="metric"><div class="label">Pass Rate</div><div id="passRate" class="value warn"></div></div>
+    </div>
+
+    <div style="margin-top:18px">
+        <div style="display:flex;justify-content:space-between;color:#cbd5e1;margin-bottom:8px">
+            <span>Validation Completion</span>
+            <span id="progressLabel"></span>
+        </div>
+        <div class="bar-track" style="height:18px">
+            <div id="progressFill" class="bar-fill" style="height:18px;width:0%"></div>
+        </div>
+    </div>
+</div>
+
+<div class="chart-row">
+    <div class="card">
+        <div class="title">Failure Breakdown by Subsystem</div>
+        <div id="subsystemChart"></div>
+    </div>
+    <div class="card">
+        <div class="title">Failure Breakdown by Error Type</div>
+        <div id="errorChart"></div>
+    </div>
+</div>
+
+<div class="chart-row">
+    <div class="card">
+        <div class="title">Pass vs Fail</div>
+        <div id="passFailChart"></div>
+    </div>
+    <div class="card">
+        <div class="title">Failures by Owner</div>
+        <div id="ownerChart"></div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="title">Run Trend</div>
+    <div id="runTrendChart"></div>
+</div>
+
+<div class="card">
+    <div class="title">Risky Validation Records</div>
+    <table id="riskTable"></table>
+</div>
+
+</div>
+
+<script>
+let DATA = null;
+
+function pct(x){ return (x * 100).toFixed(1) + "%"; }
+
+function renderBars(target, obj){
+    const max = Math.max(...Object.values(obj), 1);
+    let html = "";
+    Object.entries(obj).forEach(([k,v])=>{
+        html += `
+        <div class="bar">
+            <div class="bar-label">${k}</div>
+            <div class="bar-track"><div class="bar-fill" style="width:${(v/max)*100}%"></div></div>
+            <div class="bar-value">${v}</div>
+        </div>`;
+    });
+    document.getElementById(target).innerHTML = html;
+}
+
+function renderRunTrend(target, obj){
+    let html = "<table><tr><th>Run</th><th>Pass</th><th>Fail</th><th>Pass Rate</th></tr>";
+    Object.entries(obj || {}).forEach(([run, counts])=>{
+        const pass = counts.PASS || 0;
+        const fail = counts.FAIL || 0;
+        const total = pass + fail;
+        const rate = total ? ((pass / total) * 100).toFixed(1) + "%" : "0.0%";
+        html += `<tr><td>${run}</td><td>${pass}</td><td>${fail}</td><td>${rate}</td></tr>`;
+    });
+    html += "</table>";
+    document.getElementById(target).innerHTML = html;
+}
+
+async function load(){
+    const res = await fetch("/data");
+    DATA = await res.json();
+    const s = DATA.summary;
+    const ai = s.ai_copilot || {};
+
+    document.getElementById("total").innerText = s.total_results;
+    document.getElementById("passed").innerText = s.passed;
+    document.getElementById("failed").innerText = s.failed;
+    document.getElementById("passRate").innerText = pct(s.pass_rate);
+    document.getElementById("progressLabel").innerText = pct(s.requirement_coverage || 0);
+    document.getElementById("progressFill").style.width = ((s.requirement_coverage || 0) * 100) + "%";
+
+    document.getElementById("analyst").innerHTML = `
+        <b>Result:</b> ${ai.result || "Validation analysis complete."}<br><br>
+        <b>Answer:</b> ${ai.answer || "Processed deterministic validation results."}<br><br>
+        <b>Evidence:</b> ${ai.evidence || "Pass rate, coverage, failure clusters, and flaky tests are computed from CSV."}<br><br>
+        <b>Next Action:</b> ${ai.next_action || "Debug failed and flaky tests."}<br><br>
+        <b>Recommendation:</b> ${ai.recommendation || "Prioritize repeated subsystem failures."}<br><br>
+        <b>Decision:</b> ${ai.decision || "Hold release until risk is reviewed."}
+    `;
+
+    renderBars("subsystemChart", s.failures_by_subsystem || {});
+    renderBars("errorChart", s.failures_by_error || {});
+    renderBars("passFailChart", {"PASS": s.passed || 0, "FAIL": s.failed || 0});
+    renderBars("ownerChart", s.failures_by_owner || {});
+    renderRunTrend("runTrendChart", s.results_by_run || {});
+
+    let table = "<tr><th>Test ID</th><th>Subsystem</th><th>Status</th><th>Error</th><th>Owner</th><th>Requirement</th></tr>";
+    (s.top_risky_tests || []).forEach(r=>{
+        table += `<tr>
+            <td>${r.test_id}</td>
+            <td>${r.subsystem}</td>
+            <td>${r.status}</td>
+            <td>${r.error_type || ""}</td>
+            <td>${r.owner || ""}</td>
+            <td>${r.requirement || ""}</td>
+        </tr>`;
+    });
+    document.getElementById("riskTable").innerHTML = table;
+}
+
+function fillQ(q){
+    document.getElementById("question").value = q;
+}
+
+async function askAI(){
+    const q = document.getElementById("question").value.trim();
+    if(!q){
+        document.getElementById("chatAnswer").innerHTML = "Enter a question.";
+        return;
+    }
+
+    document.getElementById("chatStatus").innerText = "Running Local AI...";
+    document.getElementById("chatAnswer").innerHTML = "";
+
+    try{
+        const res = await fetch("/ask", { method:"POST", body:q });
+        const d = await res.json();
+        document.getElementById("chatStatus").innerText = "Local AI Finished";
+        document.getElementById("chatStatus").style.color = "#22c55e";
+        document.getElementById("chatAnswer").innerHTML = `
+            <b>Answer:</b> ${d.answer}<br><br>
+            <b>Evidence:</b> ${d.evidence}<br><br>
+            <b>Next Action:</b> ${d.next_action}<br><br>
+            <b>Recommendation:</b> ${d.recommendation}<br><br>
+            <b>Decision:</b> ${d.decision}
+        `;
+    }catch(e){
+        document.getElementById("chatStatus").innerText = "Local AI Failed";
+        document.getElementById("chatStatus").style.color = "#ef4444";
+    }
+}
+
+load();
+</script>
+</body>
+</html>

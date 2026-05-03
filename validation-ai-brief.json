@@ -1,0 +1,11 @@
+{
+  "answer": "Local AI failed: Expecting value: line 1 column 1 (char 0)",
+  "evidence": "Fallback used deterministic validation summary.",
+  "next_action": "Review deterministic failures and flaky tests.",
+  "recommendation": "Debug high-frequency subsystem failures first.",
+  "decision": "Hold release until failures and flaky tests are reviewed.",
+  "result": "Fallback validation analysis generated.",
+  "subsystem_risks": [],
+  "debug_recommendations": [],
+  "release_readiness": "hold"
+}

@@ -1,0 +1,1240 @@
+{
+  "summary": {
+    "total_results": 106,
+    "passed": 80,
+    "failed": 26,
+    "pass_rate": 0.755,
+    "requirement_coverage": 1.0,
+    "flaky_tests": [
+      "system_018",
+      "nvme_007",
+      "pcie_014",
+      "thermal_007",
+      "pcie_link_001",
+      "ddr_training_004"
+    ],
+    "failures_by_subsystem": {
+      "DDR": 5,
+      "Firmware": 4,
+      "PCIe": 4,
+      "System": 3,
+      "Thermal": 2,
+      "CXL": 2,
+      "NVMe": 2,
+      "FPGA": 2,
+      "PCIE": 1,
+      "THERMAL": 1
+    },
+    "failures_by_error": {
+      "timing_slack": 5,
+      "training_error": 5,
+      "crc_error": 4,
+      "limit_exceeded": 4,
+      "timeout": 4,
+      "firmware_assert": 3,
+      "link_down": 1
+    },
+    "failures_by_owner": {
+      "Firmware": 7,
+      "Hardware": 7,
+      "Validation": 6,
+      "SignalIntegrity": 4,
+      "Systems": 2
+    },
+    "results_by_run": {
+      "RUN-01": {
+        "PASS": 11,
+        "FAIL": 4
+      },
+      "RUN-02": {
+        "PASS": 16,
+        "FAIL": 1
+      },
+      "RUN-03": {
+        "PASS": 8,
+        "FAIL": 3
+      },
+      "RUN-04": {
+        "PASS": 17,
+        "FAIL": 7
+      },
+      "RUN-05": {
+        "PASS": 15,
+        "FAIL": 5
+      },
+      "RUN-06": {
+        "PASS": 10,
+        "FAIL": 3
+      },
+      "RUN-FLAKY-A": {
+        "PASS": 3,
+        "FAIL": 0
+      },
+      "RUN-FLAKY-B": {
+        "PASS": 0,
+        "FAIL": 3
+      }
+    },
+    "top_risky_tests": [
+      {
+        "test_id": "ddr_008",
+        "requirement": "REQ-008",
+        "subsystem": "DDR",
+        "status": "FAIL",
+        "error_type": "timing_slack",
+        "owner": "Firmware",
+        "duration_ms": "879",
+        "run_id": "RUN-06"
+      },
+      {
+        "test_id": "ddr_022",
+        "requirement": "REQ-014",
+        "subsystem": "DDR",
+        "status": "FAIL",
+        "error_type": "training_error",
+        "owner": "SignalIntegrity",
+        "duration_ms": "560",
+        "run_id": "RUN-04"
+      },
+      {
+        "test_id": "ddr_017",
+        "requirement": "REQ-009",
+        "subsystem": "DDR",
+        "status": "FAIL",
+        "error_type": "training_error",
+        "owner": "Firmware",
+        "duration_ms": "2899",
+        "run_id": "RUN-01"
+      },
+      {
+        "test_id": "ddr_training_004",
+        "requirement": "REQ-025",
+        "subsystem": "DDR",
+        "status": "FAIL",
+        "error_type": "training_error",
+        "owner": "Validation",
+        "duration_ms": "2004",
+        "run_id": "RUN-FLAKY-B"
+      },
+      {
+        "test_id": "ddr_001",
+        "requirement": "REQ-003",
+        "subsystem": "DDR",
+        "status": "FAIL",
+        "error_type": "crc_error",
+        "owner": "Firmware",
+        "duration_ms": "1402",
+        "run_id": "RUN-04"
+      },
+      {
+        "test_id": "firmware_007",
+        "requirement": "REQ-022",
+        "subsystem": "Firmware",
+        "status": "FAIL",
+        "error_type": "timing_slack",
+        "owner": "Hardware",
+        "duration_ms": "624",
+        "run_id": "RUN-05"
+      },
+      {
+        "test_id": "pcie_014",
+        "requirement": "REQ-026",
+        "subsystem": "PCIe",
+        "status": "FAIL",
+        "error_type": "timing_slack",
+        "owner": "Firmware",
+        "duration_ms": "2225",
+        "run_id": "RUN-02"
+      },
+      {
+        "test_id": "pcie_003",
+        "requirement": "REQ-003",
+        "subsystem": "PCIe",
+        "status": "FAIL",
+        "error_type": "crc_error",
+        "owner": "Systems",
+        "duration_ms": "606",
+        "run_id": "RUN-05"
+      }
+    ],
+    "release_status": "hold",
+    "operator_priority": [
+      "Debug highest-frequency subsystem failures first",
+      "Quarantine flaky tests before release signoff",
+      "Review failing requirements with test owners"
+    ],
+    "ai_copilot": {
+      "answer": "Local AI failed: Expecting value: line 1 column 1 (char 0)",
+      "evidence": "Fallback used deterministic validation summary.",
+      "next_action": "Review deterministic failures and flaky tests.",
+      "recommendation": "Debug high-frequency subsystem failures first.",
+      "decision": "Hold release until failures and flaky tests are reviewed.",
+      "result": "Fallback validation analysis generated.",
+      "subsystem_risks": [],
+      "debug_recommendations": [],
+      "release_readiness": "hold"
+    }
+  },
+  "rows": [
+    {
+      "test_id": "ddr_008",
+      "requirement": "REQ-008",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "timing_slack",
+      "owner": "Firmware",
+      "duration_ms": "879",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "ddr_002",
+      "requirement": "REQ-001",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "1831",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "pcie_023",
+      "requirement": "REQ-021",
+      "subsystem": "PCIe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "3476",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "nvme_001",
+      "requirement": "REQ-025",
+      "subsystem": "NVMe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "3502",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "thermal_011",
+      "requirement": "REQ-004",
+      "subsystem": "Thermal",
+      "status": "FAIL",
+      "error_type": "firmware_assert",
+      "owner": "Validation",
+      "duration_ms": "3152",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "firmware_020",
+      "requirement": "REQ-009",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "3803",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "ddr_013",
+      "requirement": "REQ-003",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "2441",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "firmware_023",
+      "requirement": "REQ-003",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "1906",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "ddr_004",
+      "requirement": "REQ-013",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "3754",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "firmware_007",
+      "requirement": "REQ-022",
+      "subsystem": "Firmware",
+      "status": "FAIL",
+      "error_type": "timing_slack",
+      "owner": "Hardware",
+      "duration_ms": "624",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "cxl_008",
+      "requirement": "REQ-006",
+      "subsystem": "CXL",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "3148",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "fpga_025",
+      "requirement": "REQ-025",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "1916",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "firmware_003",
+      "requirement": "REQ-007",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "2617",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "nvme_021",
+      "requirement": "REQ-015",
+      "subsystem": "NVMe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "2209",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "fpga_018",
+      "requirement": "REQ-009",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "3549",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "system_005",
+      "requirement": "REQ-017",
+      "subsystem": "System",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "784",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "ddr_022",
+      "requirement": "REQ-014",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "training_error",
+      "owner": "SignalIntegrity",
+      "duration_ms": "560",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "system_015",
+      "requirement": "REQ-017",
+      "subsystem": "System",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "4572",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "ddr_018",
+      "requirement": "REQ-025",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "2826",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "thermal_015",
+      "requirement": "REQ-001",
+      "subsystem": "Thermal",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "4140",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "ddr_010",
+      "requirement": "REQ-027",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "1669",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "firmware_018",
+      "requirement": "REQ-025",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "44",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "firmware_004",
+      "requirement": "REQ-030",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "2559",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "pcie_003",
+      "requirement": "REQ-003",
+      "subsystem": "PCIe",
+      "status": "FAIL",
+      "error_type": "crc_error",
+      "owner": "Systems",
+      "duration_ms": "606",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "cxl_018",
+      "requirement": "REQ-006",
+      "subsystem": "CXL",
+      "status": "FAIL",
+      "error_type": "limit_exceeded",
+      "owner": "Hardware",
+      "duration_ms": "4362",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "system_018",
+      "requirement": "REQ-025",
+      "subsystem": "System",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "2593",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "firmware_017",
+      "requirement": "REQ-015",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "2070",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "ddr_019",
+      "requirement": "REQ-018",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "4860",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "pcie_002",
+      "requirement": "REQ-008",
+      "subsystem": "PCIe",
+      "status": "FAIL",
+      "error_type": "link_down",
+      "owner": "Validation",
+      "duration_ms": "297",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "ddr_009",
+      "requirement": "REQ-022",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "1795",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "cxl_019",
+      "requirement": "REQ-019",
+      "subsystem": "CXL",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "2030",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "system_022",
+      "requirement": "REQ-014",
+      "subsystem": "System",
+      "status": "FAIL",
+      "error_type": "timeout",
+      "owner": "Hardware",
+      "duration_ms": "3509",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "nvme_002",
+      "requirement": "REQ-022",
+      "subsystem": "NVMe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "536",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "firmware_004",
+      "requirement": "REQ-008",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "1598",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "nvme_009",
+      "requirement": "REQ-015",
+      "subsystem": "NVMe",
+      "status": "FAIL",
+      "error_type": "training_error",
+      "owner": "Firmware",
+      "duration_ms": "657",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "ddr_001",
+      "requirement": "REQ-003",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "crc_error",
+      "owner": "Firmware",
+      "duration_ms": "1402",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "nvme_013",
+      "requirement": "REQ-029",
+      "subsystem": "NVMe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "1388",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "pcie_009",
+      "requirement": "REQ-030",
+      "subsystem": "PCIe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "2376",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "nvme_007",
+      "requirement": "REQ-002",
+      "subsystem": "NVMe",
+      "status": "FAIL",
+      "error_type": "timing_slack",
+      "owner": "SignalIntegrity",
+      "duration_ms": "4481",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "firmware_016",
+      "requirement": "REQ-017",
+      "subsystem": "Firmware",
+      "status": "FAIL",
+      "error_type": "crc_error",
+      "owner": "SignalIntegrity",
+      "duration_ms": "1329",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "ddr_003",
+      "requirement": "REQ-020",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "1966",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "ddr_019",
+      "requirement": "REQ-008",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "4910",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "ddr_019",
+      "requirement": "REQ-019",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "2631",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "fpga_011",
+      "requirement": "REQ-008",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "3282",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "thermal_025",
+      "requirement": "REQ-030",
+      "subsystem": "Thermal",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "116",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "ddr_017",
+      "requirement": "REQ-009",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "training_error",
+      "owner": "Firmware",
+      "duration_ms": "2899",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "fpga_006",
+      "requirement": "REQ-015",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "2518",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "pcie_018",
+      "requirement": "REQ-010",
+      "subsystem": "PCIe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "1140",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "ddr_024",
+      "requirement": "REQ-018",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "2271",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "fpga_007",
+      "requirement": "REQ-022",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "4180",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "thermal_002",
+      "requirement": "REQ-003",
+      "subsystem": "Thermal",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "2306",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "pcie_005",
+      "requirement": "REQ-021",
+      "subsystem": "PCIe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "1363",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "nvme_014",
+      "requirement": "REQ-018",
+      "subsystem": "NVMe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "956",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "cxl_012",
+      "requirement": "REQ-019",
+      "subsystem": "CXL",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "1253",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "cxl_002",
+      "requirement": "REQ-029",
+      "subsystem": "CXL",
+      "status": "FAIL",
+      "error_type": "timing_slack",
+      "owner": "Hardware",
+      "duration_ms": "1760",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "fpga_012",
+      "requirement": "REQ-025",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "3369",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "cxl_008",
+      "requirement": "REQ-028",
+      "subsystem": "CXL",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "1490",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "pcie_014",
+      "requirement": "REQ-026",
+      "subsystem": "PCIe",
+      "status": "FAIL",
+      "error_type": "timing_slack",
+      "owner": "Firmware",
+      "duration_ms": "2225",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "ddr_002",
+      "requirement": "REQ-028",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "1862",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "nvme_008",
+      "requirement": "REQ-008",
+      "subsystem": "NVMe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "1622",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "firmware_025",
+      "requirement": "REQ-009",
+      "subsystem": "Firmware",
+      "status": "FAIL",
+      "error_type": "timeout",
+      "owner": "Hardware",
+      "duration_ms": "4213",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "firmware_004",
+      "requirement": "REQ-029",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "1502",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "thermal_014",
+      "requirement": "REQ-012",
+      "subsystem": "Thermal",
+      "status": "FAIL",
+      "error_type": "crc_error",
+      "owner": "Hardware",
+      "duration_ms": "3614",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "ddr_019",
+      "requirement": "REQ-007",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "403",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "system_018",
+      "requirement": "REQ-022",
+      "subsystem": "System",
+      "status": "FAIL",
+      "error_type": "firmware_assert",
+      "owner": "Firmware",
+      "duration_ms": "3023",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "ddr_011",
+      "requirement": "REQ-020",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "1060",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "thermal_022",
+      "requirement": "REQ-014",
+      "subsystem": "Thermal",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "3336",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "thermal_007",
+      "requirement": "REQ-014",
+      "subsystem": "Thermal",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "1465",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "thermal_001",
+      "requirement": "REQ-010",
+      "subsystem": "Thermal",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "1761",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "firmware_015",
+      "requirement": "REQ-022",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "4227",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "cxl_010",
+      "requirement": "REQ-017",
+      "subsystem": "CXL",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "2785",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "fpga_008",
+      "requirement": "REQ-026",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "1247",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "pcie_020",
+      "requirement": "REQ-028",
+      "subsystem": "PCIe",
+      "status": "FAIL",
+      "error_type": "limit_exceeded",
+      "owner": "Validation",
+      "duration_ms": "3770",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "fpga_013",
+      "requirement": "REQ-016",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "2038",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "pcie_025",
+      "requirement": "REQ-029",
+      "subsystem": "PCIe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "3522",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "cxl_023",
+      "requirement": "REQ-017",
+      "subsystem": "CXL",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "451",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "fpga_004",
+      "requirement": "REQ-015",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "3846",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "firmware_015",
+      "requirement": "REQ-020",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "3535",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "nvme_024",
+      "requirement": "REQ-028",
+      "subsystem": "NVMe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "3726",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "fpga_009",
+      "requirement": "REQ-025",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "4009",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "fpga_023",
+      "requirement": "REQ-010",
+      "subsystem": "FPGA",
+      "status": "FAIL",
+      "error_type": "timeout",
+      "owner": "Firmware",
+      "duration_ms": "2265",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "firmware_003",
+      "requirement": "REQ-005",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "1934",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "cxl_003",
+      "requirement": "REQ-014",
+      "subsystem": "CXL",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "2750",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "nvme_007",
+      "requirement": "REQ-027",
+      "subsystem": "NVMe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "3230",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "pcie_025",
+      "requirement": "REQ-019",
+      "subsystem": "PCIe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "3947",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "firmware_013",
+      "requirement": "REQ-028",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "4449",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "fpga_009",
+      "requirement": "REQ-014",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "277",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "firmware_013",
+      "requirement": "REQ-024",
+      "subsystem": "Firmware",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "3868",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "pcie_019",
+      "requirement": "REQ-019",
+      "subsystem": "PCIe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "727",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "system_006",
+      "requirement": "REQ-002",
+      "subsystem": "System",
+      "status": "FAIL",
+      "error_type": "limit_exceeded",
+      "owner": "Hardware",
+      "duration_ms": "3145",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "fpga_011",
+      "requirement": "REQ-025",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Systems",
+      "duration_ms": "2319",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "thermal_016",
+      "requirement": "REQ-001",
+      "subsystem": "Thermal",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "SignalIntegrity",
+      "duration_ms": "466",
+      "run_id": "RUN-03"
+    },
+    {
+      "test_id": "fpga_025",
+      "requirement": "REQ-021",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "294",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "fpga_020",
+      "requirement": "REQ-005",
+      "subsystem": "FPGA",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "1074",
+      "run_id": "RUN-04"
+    },
+    {
+      "test_id": "ddr_007",
+      "requirement": "REQ-015",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "3061",
+      "run_id": "RUN-02"
+    },
+    {
+      "test_id": "ddr_006",
+      "requirement": "REQ-010",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "4780",
+      "run_id": "RUN-01"
+    },
+    {
+      "test_id": "thermal_013",
+      "requirement": "REQ-013",
+      "subsystem": "Thermal",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Firmware",
+      "duration_ms": "662",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "fpga_010",
+      "requirement": "REQ-028",
+      "subsystem": "FPGA",
+      "status": "FAIL",
+      "error_type": "firmware_assert",
+      "owner": "SignalIntegrity",
+      "duration_ms": "1031",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "pcie_014",
+      "requirement": "REQ-022",
+      "subsystem": "PCIe",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Hardware",
+      "duration_ms": "604",
+      "run_id": "RUN-05"
+    },
+    {
+      "test_id": "firmware_016",
+      "requirement": "REQ-004",
+      "subsystem": "Firmware",
+      "status": "FAIL",
+      "error_type": "limit_exceeded",
+      "owner": "Systems",
+      "duration_ms": "3007",
+      "run_id": "RUN-06"
+    },
+    {
+      "test_id": "pcie_link_001",
+      "requirement": "REQ-029",
+      "subsystem": "PCIE",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "1983",
+      "run_id": "RUN-FLAKY-A"
+    },
+    {
+      "test_id": "pcie_link_001",
+      "requirement": "REQ-023",
+      "subsystem": "PCIE",
+      "status": "FAIL",
+      "error_type": "timeout",
+      "owner": "Validation",
+      "duration_ms": "1883",
+      "run_id": "RUN-FLAKY-B"
+    },
+    {
+      "test_id": "thermal_007",
+      "requirement": "REQ-006",
+      "subsystem": "THERMAL",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "2237",
+      "run_id": "RUN-FLAKY-A"
+    },
+    {
+      "test_id": "thermal_007",
+      "requirement": "REQ-021",
+      "subsystem": "THERMAL",
+      "status": "FAIL",
+      "error_type": "training_error",
+      "owner": "Validation",
+      "duration_ms": "2622",
+      "run_id": "RUN-FLAKY-B"
+    },
+    {
+      "test_id": "ddr_training_004",
+      "requirement": "REQ-026",
+      "subsystem": "DDR",
+      "status": "PASS",
+      "error_type": "",
+      "owner": "Validation",
+      "duration_ms": "2304",
+      "run_id": "RUN-FLAKY-A"
+    },
+    {
+      "test_id": "ddr_training_004",
+      "requirement": "REQ-025",
+      "subsystem": "DDR",
+      "status": "FAIL",
+      "error_type": "training_error",
+      "owner": "Validation",
+      "duration_ms": "2004",
+      "run_id": "RUN-FLAKY-B"
+    }
+  ]
+}
